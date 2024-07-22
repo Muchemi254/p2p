@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 void main(){
   runApp(
-    MaterialApp(home: WelcomeScreen()
+    const MaterialApp(home: WelcomeScreen()
     ),
      );
 }
@@ -35,10 +35,10 @@ class WelcomeScreen extends StatelessWidget {
 
 
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.0), // Margin around the entire container
-              child: Padding(
+              margin: const EdgeInsets.symmetric(horizontal: 5.0), // Margin around the entire container
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0), // Padding inside the Text widget
-                child:  const Text('Welcome to\n the world of LOOP!',
+                child:  Text('Welcome to\n the world of LOOP!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -51,8 +51,8 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox( height: 15,),
 
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 5.0), // Margin around the entire container
-              child: Padding(
+              margin: const EdgeInsets.symmetric(horizontal: 5.0), // Margin around the entire container
+              child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0.0), // Padding inside the Text widget
                 child: Text(
                   'Please enter 33 your phone number\n to proceed',
@@ -71,7 +71,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox( height: 25,),
 
             Container(
-              padding: EdgeInsets.all(5.0), // Padding around the child widget
+              padding: const EdgeInsets.all(5.0), // Padding around the child widget
               decoration: BoxDecoration(
                 color: Colors.grey[200], // Background color of the container
                 borderRadius: BorderRadius.circular(10.0), // Border radius all around
@@ -98,8 +98,7 @@ class WelcomeScreen extends StatelessWidget {
 
             const SizedBox( height: 20,),
 
-            //phone field
-            Container(
+ Container(
               decoration: BoxDecoration(
                 color: Colors.grey[200], // Background color of the container
                 borderRadius: BorderRadius.circular(10.0), // Border radius all around
@@ -107,7 +106,38 @@ class WelcomeScreen extends StatelessWidget {
             child:Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Kenya ',
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+                  ),
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      
+                    },
+                    child: const Text(''),
+        
+                  ),
+                ),
+              ],
+            ),
+            ),
+
+   
+ const SizedBox( height: 20,),
+
+ Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200], // Background color of the container
+                borderRadius: BorderRadius.circular(10.0), // Border radius all around
+              ),
+            child:Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     '+254 ',
@@ -119,10 +149,10 @@ class WelcomeScreen extends StatelessWidget {
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       hintText: 'Enter your phone number',
-                      hintStyle: TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.grey),
                       border: OutlineInputBorder( // Create a plain box border
                         borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide(color: Colors.white), // Optional border color
+                        borderSide: const BorderSide(color: Colors.white), // Optional border color
                       ),
                       enabledBorder: InputBorder.none, // Remove the default underline
                       focusedBorder: InputBorder.none,
@@ -133,20 +163,33 @@ class WelcomeScreen extends StatelessWidget {
             ),
             ),
 
+const SizedBox(height: 20,),
 
-
-
-
-
-            const SizedBox(height: 10,),
-            //Email field
-
-            const TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-                prefixIcon: Icon(Icons.email),
+ Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200], // Background color of the container
+                borderRadius: BorderRadius.circular(10.0), // Border radius all around
               ),
+            child:Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      hintText: '   Enter your email address',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder( // Create a plain box border
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: const BorderSide(color: Colors.white), // Optional border color
+                      ),
+                      enabledBorder: InputBorder.none, // Remove the default underline
+                      focusedBorder: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             ),
 
             const SizedBox(height: 20,),
