@@ -27,184 +27,267 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     super.dispose();
   }
 
+// ... (rest of your code)
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        decoration: const BoxDecoration(
+      // ... (rest of your Scaffold code)
+      body:
+      Container(
+      // ... (rest of your body container code)
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      decoration: const BoxDecoration(
           color: Colors.white
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            //logo
-            //const FlutterLogo(size: 150,),
-            const SizedBox(height: 20),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5.0),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  'Welcome to\n the world of LOOP!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+      ),
+      child: Column(
+        // ... (rest of your Column code)
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+         /* Expanded( // Wrap the top part in Expanded
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                //logo
+                //const FlutterLogo(size: 150,),
+                const SizedBox(height: 20),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      'Welcome to\n the world of LOOP!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5.0),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0.0),
-                child: Text(
-                  'Please enter your phone number\n to proceed',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
+                const SizedBox(height: 15),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0.0),
+                    child: Text(
+                      'Please enter your phone number\n to proceed',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-            const SizedBox(height: 20),
-            // Login Form
-            Row(
+          ), */
+          // Login Form
+          Container(
+            padding: const EdgeInsets.all(4.0), // Padding around the container
+            decoration: BoxDecoration(
+              color: Colors.grey[300],borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      showPhoneForm = true;
-                    });
-                  },
-                  child: const Text("Phone"),
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: showPhoneForm ? Colors.orange : Colors.grey[300],
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        showPhoneForm = true;
+                      });
+                    },
+                    child: Text(
+                      "Mobile Phone",
+                      style: TextStyle(color: showPhoneForm ? Colors.white : Colors.black,),
+                    ),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      showPhoneForm = false;
-                    });
-                  },
-                  child: const Text("Email"),
+                const SizedBox(width: 8), // Space between buttons
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: !showPhoneForm ? Colors.orange : Colors.grey[300],
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        showPhoneForm = false;
+                      });
+                    },
+                    child: Text("Email",
+                      style: TextStyle(
+                        color: !showPhoneForm ? Colors.white : Colors.black,),
+                    ),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 10),
-            Visibility(
-              visible: showPhoneForm,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all( // Add this line for the border
-                    color: Colors.grey, // Set the border colorwidth: 1.0, // Set the border width
-                  ),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(25.0),
-                      child: Text(
-                        '+254 ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
+          ),
+          const SizedBox(height: 10), // Space after login form
+          Visibility(
+            visible: showPhoneForm,
+            child: Container(
+
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                    Expanded(
-                      child: SizedBox(
-                        width: 200,
-                        child: TextField(
-                          controller: phoneController,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            hintText: 'Enter your phone number',
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(color: Colors.grey),
+                    child: Row(
+
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            '+254 ',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
                             ),
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Visibility(
-              visible: !showPhoneForm,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        width: 200,
-                        child: Padding(
-                          padding: const EdgeInsets.all(9.0),
-                          child: TextField(
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              hintText: '   Enter your email address',
-                              hintStyle: const TextStyle(color: Colors.grey),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide: const BorderSide(color: Colors.white),
+                        Expanded(
+                          child: SizedBox(
+                            width: 200,
+                            child: TextField(
+                              controller: phoneController,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                hintText: 'Enter your phone number',
+                                hintStyle: const TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderSide: const BorderSide(color: Colors.white),
+                                ),
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
                               ),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 20,),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            '+254 ',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox(
+                            width: 200,
+                            child: TextField(
+                              controller: phoneController,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                hintText: 'Enter your phone number',
+                                hintStyle: const TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderSide: const BorderSide(color: Colors.white),
+                                ),
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 20),
-            //Buttons
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {}, // button logic
-                    child: const Text('Sign In'),
+          ),
+          Visibility(
+            visible: !showPhoneForm,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      width: 200,
+                      child: TextField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: '   Enter your email address',
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
-            //Buttons
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {}, // button logic
-                    child: const Text('Create an account'),
-                  ),
+          ),
+          const SizedBox(height: 20), // Space after login form//Buttons
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {}, // button logic
+                  child: const Text('Sign In'),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          //Buttons
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {}, // button logic
+                  child: const Text('Create an account'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
+    ),
     );
   }
 }
