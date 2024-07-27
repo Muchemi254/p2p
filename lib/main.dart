@@ -77,10 +77,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: SingleChildScrollView(
           child: Container(
                   // ... (rest of your body container code)
+            color: Color(0xFFFDFDFD),
                   padding: const EdgeInsets.only(right: 30, left: 30,),
-                  decoration: const BoxDecoration(
-                      color: Colors.white
-                  ),
 
 
           child: Column(
